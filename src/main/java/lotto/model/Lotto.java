@@ -34,6 +34,10 @@ public class Lotto {
         }
     }
 
+    public String getLottoNumbers() {
+        return this.numbers.toString();
+    }
+
     public boolean isOverlappedNumbersAndBonusNumber() {
         return numbers.contains(bonusNumber);
     }

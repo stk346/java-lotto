@@ -1,12 +1,10 @@
 package lotto;
 
 import lotto.model.Lotto;
-import lotto.model.LottoNumberGenerator;
-import lotto.model.Player;
+import lotto.model.RewardCalculator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.HashSet;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -40,4 +38,11 @@ class LottoTest {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         assertThat(lotto.isOverlappedNumbersAndBonusNumber()).isEqualTo(false);
     }
+
+    @Test
+    void 당첨번호_생성_테스트() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        assertThat(lotto.getLottoNumbers()).isEqualTo("[1, 2, 3, 4, 5, 6]");
+    }
+
 }
