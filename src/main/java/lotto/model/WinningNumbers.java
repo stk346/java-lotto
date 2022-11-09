@@ -1,12 +1,13 @@
 package lotto.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class WinningNumbers {
-    List<Integer> winningNumbers;
+    List<Integer> winningNumbers = new ArrayList<>();
     int winningBonusNumber;
 
-    WinningNumbers(String numbers, String bonusNumber) {
+    public WinningNumbers(String numbers, String bonusNumber) {
         addWinningNumbers(numbers);
         addBonusNumber(bonusNumber);
     }
@@ -14,7 +15,7 @@ public class WinningNumbers {
     private void addWinningNumbers(String numbers) {
         String[] winningNumbers = numbers.split(",");
         for (String s : winningNumbers) {
-            this.winningNumbers.add(Integer.valueOf(s));
+            this.winningNumbers.add(Integer.parseInt(s));
         }
     }
 

@@ -1,33 +1,34 @@
 package lotto.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Player {
-    List<Lotto> lottoList;
-    List<Integer> BonusNumbers;
+    public List<Lotto> playerLotto = new ArrayList<>();
 
-    public Player(int repeatCounts) {
-        getLotto((repeatCounts));
+    public Player(int money) {
+        getLotto((money));
     }
 
-    private void getLotto(int repeatCounts) {
+    private void getLotto(int money) {
         int count = 0;
-        while (count <= repeatCounts) {
+        while (count < money/1000) {
             LottoNumberGenerator lottoNumberGenerator = new LottoNumberGenerator();
             List<Integer> randomNumber = lottoNumberGenerator.generateLottoNumbers();
             Lotto lotto = new Lotto(randomNumber);
-            this.lottoList.add(lotto);
+            lotto.generateBonusNumber();
+            this.playerLotto.add(lotto);
             count++;
         }
     }
 
-    public void showLottoNumber(int idx) {
-        String lottoNumbers = this.lottoList.get(idx).toString();
+    public void showLottoNumbers(int idx) {
+        String lottoNumbers = this.playerLotto.get(idx).getLottoNumbers();
         String convertedNumbers = lottoNumbers.replace(",", ", ");
-        System.out.println();
-        }
+        System.out.println(convertedNumbers);
+    }
 
     public void showBonusNumber(int idx) {
-        System.out.println(this.BonusNumbers.get(idx));
+        System.out.println(this.playerLotto.get(idx).getBonusNumber());
     }
 }
