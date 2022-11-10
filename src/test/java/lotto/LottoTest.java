@@ -31,11 +31,6 @@ class LottoTest {
     }
 
     // 아래에 추가 테스트 작성 가능
-    @Test
-    void 오름차순으로_정렬_테스트() {
-        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 6, 5)))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
 
     @Test
     void 로또넘버와_추가넘버_정상_생성되는지_테스트() {
