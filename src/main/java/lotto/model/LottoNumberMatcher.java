@@ -7,20 +7,20 @@ public class LottoNumberMatcher {
         this.winningNumbers = winningNumbers;
     }
 
-    public int getReward(Lotto lotto) {
+    public RewardMapper getLottoMapper(Lotto lotto) {
         int matchingNumber = getMatchingNumber(lotto);
         boolean isBonusNumberMatches = isBonusNumberMatches(lotto);
         if (matchingNumber != 5) {
             isBonusNumberMatches = false;
         }
 
-        return RewardMapper.getReward(matchingNumber, isBonusNumberMatches);
+        return RewardMapper.getRewardMapper(matchingNumber, isBonusNumberMatches);
     }
 
     private int getMatchingNumber(Lotto lotto) {
         int matchingNumberCounts = 0;
         for (int idx=0; idx<winningNumbers.winningNumbers.size(); idx++) {
-            if (this.winningNumbers.winningNumbers.get(idx) == lotto.getLottoNumber(idx)) {
+            if (this.winningNumbers.winningNumbers.contains(lotto.getLottoNumber(idx))) {
                 matchingNumberCounts++;
             }
         }

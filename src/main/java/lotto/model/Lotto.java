@@ -67,10 +67,12 @@ public class Lotto {
     }
 
     public String getLottoNumbers() {
+        Collections.sort(this.numbers);
         return this.numbers.toString();
     }
 
     public int getBonusNumber() {
         return this.bonusNumber;
     }
+
 }

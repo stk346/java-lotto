@@ -1,9 +1,6 @@
 package lotto;
 
-import lotto.model.Lotto;
-import lotto.model.LottoNumberMatcher;
-import lotto.model.Player;
-import lotto.model.WinningNumbers;
+import lotto.model.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -40,7 +37,7 @@ class LottoTest {
 
     @Test
     void 당첨번호_생성_테스트() {
-        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto lotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
         assertThat(lotto.getLottoNumbers()).isEqualTo("[1, 2, 3, 4, 5, 6]");
     }
 
@@ -50,8 +47,8 @@ class LottoTest {
         lotto.generateBonusNumber("9");
         WinningNumbers winningNumbers = new WinningNumbers("1,2,3,4,5,7", "9");
         LottoNumberMatcher lottoNumberMatcher = new LottoNumberMatcher(winningNumbers);
-        int reward = lottoNumberMatcher.getReward(lotto);
-        assertThat(reward).isEqualTo(30000000);
+        RewardMapper rewardMapper = lottoNumberMatcher.getLottoMapper(lotto);
+        assertThat(rewardMapper.reward).isEqualTo(30000000);
     }
 
     @Test
@@ -60,13 +57,23 @@ class LottoTest {
         lotto.generateBonusNumber("9");
         WinningNumbers winningNumbers = new WinningNumbers("1,2,3,4,5,6", "9");
         LottoNumberMatcher lottoNumberMatcher = new LottoNumberMatcher(winningNumbers);
-        int reward = lottoNumberMatcher.getReward(lotto);
-        assertThat(reward).isEqualTo(2000000000);
+        RewardMapper rewardMapper = lottoNumberMatcher.getLottoMapper(lotto);
+        assertThat(rewardMapper.reward).isEqualTo(2000000000);
     }
 
     @Test
     void 투입_금액_만큼_로또가_구매되는지_테스트() {
         Player player = new Player(6300);
         assertThat(player.playerLotto.size()).isEqualTo(6);
+    }
+
+    @Test
+    void 당첨통계테스트() {
+//        Player player = new Player(10000);
+        Player player = new Player(new Lotto(Arrays.asList(1,4,3,2,5,6)));
+        WinningNumbers winningNumbers = new WinningNumbers("1,2,3,4,5,6", "7");
+        LottoRewardCalculator lottoRewardCalculator = new LottoRewardCalculator(winningNumbers);
+        lottoRewardCalculator.showLottoResult(player);
+        lottoRewardCalculator.showRewardStatistics(player);
     }
 }
