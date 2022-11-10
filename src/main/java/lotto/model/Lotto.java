@@ -11,12 +11,15 @@ public class Lotto {
     private int bonusNumber;
 
     public Lotto(List<Integer> numbers) {
-        Collections.sort(numbers);
         validate(numbers);
         validateNumbersAreUnique(numbers);
-        validateNumbersAreSortedInAscendingOrder(numbers);
         this.numbers = numbers;
     }
+
+    public void getSorted() {
+        Collections.sort(this.numbers);
+    }
+
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {

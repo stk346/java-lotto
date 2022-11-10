@@ -20,9 +20,10 @@ public enum RewardMapper {
     public static int getReward(int matchingNumber, boolean isBonusNumberMatches) {
         int reward = 0;
         for (int idx = 0; idx< RewardMapper.values().length; idx++) {
-            RewardMapper rewardElement = RewardMapper.values()[idx];
-            if (matchingNumber == rewardElement.matchingNumber && isBonusNumberMatches == rewardElement.isBonusNumberMatches) {
-                return reward += rewardElement.reward;
+
+            RewardMapper[] rewardElement = RewardMapper.values();
+            if (matchingNumber == rewardElement[idx].matchingNumber && isBonusNumberMatches == rewardElement[idx].isBonusNumberMatches) {
+                return reward += rewardElement[idx].reward;
             }
         }
         return reward;

@@ -7,7 +7,7 @@ public class Player {
     public List<Lotto> playerLotto = new ArrayList<>();
 
     public Player(int money) {
-        getLotto((money));
+        getLotto(money);
     }
 
     private void getLotto(int money) {
