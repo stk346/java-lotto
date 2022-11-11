@@ -13,13 +13,6 @@ public class LottoRewardCalculator {
         this.winningNumbers = winningNumbers;
     }
 
-    public void showLottoResult(Player player) {
-        int lottoCount = player.playerLotto.size();
-        for (int idx=0; idx<lottoCount; idx++) {
-            player.showLottoNumbers(idx);
-        }
-    }
-
     public void showRewardStatistics(Player player) {
         LottoNumberMatcher lottoNumberMatcher = new LottoNumberMatcher(winningNumbers);
         int lottoSize = player.playerLotto.size();
@@ -33,5 +26,13 @@ public class LottoRewardCalculator {
             if (lottoNumberMatcher.getLottoMapper(lotto) == RewardMapper.FIFTH_PLACE) fifthPlace++;
         }
         RewardMapper.showResult(firstPlace, secondPlace, thirdPlace, fourthPlace, fifthPlace);
+    }
+
+    public void showTotalReturn(Player player) {
+        double totalRevenue = RewardMapper.getRevenue(firstPlace, secondPlace, thirdPlace, fourthPlace, fifthPlace);
+        double investment = player.getMoney();
+        double totalReturnRatio = (totalRevenue / investment)*100;
+        double roundedTotalRevenueRatio = Math.round(totalReturnRatio*10)/10;
+        System.out.println("총 수익률은 " + roundedTotalRevenueRatio + "%입니다.");
     }
 }

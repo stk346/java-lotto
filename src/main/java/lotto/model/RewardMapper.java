@@ -51,4 +51,13 @@ public enum RewardMapper {
                         + String.format("(%,d원)", RewardMapper.FIRST_PLACE.reward)
                         + String.format(" - %s개", firstPlace));
     }
+
+    public static int getRevenue(int firstPlace, int secondPlace, int thirdPlace, int fourthPlace, int fifthPlace) {
+        int fifthRevenue = RewardMapper.FIFTH_PLACE.reward * fifthPlace;
+        int fourthRevenue = RewardMapper.FOURTH_PLACE.reward * fourthPlace;
+        int thirdRevenue = RewardMapper.THIRD_PLACE.reward * thirdPlace;
+        int secondRevenue = RewardMapper.SECOND_PLACE.reward * secondPlace;
+        int firstRevenue = RewardMapper.FIRST_PLACE.reward * firstPlace;
+        return  fifthRevenue + fourthRevenue + thirdRevenue + secondRevenue + firstRevenue;
+    }
 }

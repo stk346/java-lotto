@@ -1,5 +1,6 @@
 package lotto;
 
+import lotto.controller.LottoController;
 import lotto.model.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -71,5 +72,11 @@ class LottoTest {
     void 천원으로_나누어_떨어지지_않을_때_에러발생_테스트() {
         assertThatThrownBy(() -> new Player(1100))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 결과테스트() {
+        LottoController lottoController = new LottoController();
+        lottoController.buyLottoAndShowResult();
     }
 }
