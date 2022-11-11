@@ -24,6 +24,7 @@ public class Player {
             LottoNumberGenerator lottoNumberGenerator = new LottoNumberGenerator();
             List<Integer> randomNumber = lottoNumberGenerator.generateLottoNumbers();
             Lotto lotto = new Lotto(randomNumber);
+            validateMoney(money);
             lotto.generateBonusNumber();
             this.playerLotto.add(lotto);
             count++;
@@ -38,5 +39,9 @@ public class Player {
 
     public void showBonusNumber(int idx) {
         System.out.println(this.playerLotto.get(idx).getBonusNumber());
+    }
+
+    private void validateMoney(int money) {
+        if (money/1000 != 0) throw new IllegalArgumentException("[ERROR] 투입 금액은 1000원으로 나누어 떨어져야 합니다.");
     }
 }
