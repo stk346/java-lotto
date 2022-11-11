@@ -68,12 +68,10 @@ class LottoTest {
     }
 
     @Test
-    void 당첨통계테스트() {
-//        Player player = new Player(10000);
-        Player player = new Player(new Lotto(Arrays.asList(1,4,3,2,5,6)));
-        WinningNumbers winningNumbers = new WinningNumbers("1,2,3,4,5,6", "7");
-        LottoRewardCalculator lottoRewardCalculator = new LottoRewardCalculator(winningNumbers);
-        lottoRewardCalculator.showLottoResult(player);
-        lottoRewardCalculator.showRewardStatistics(player);
+    void 천원으로_나누어_떨어지지_않을_때_에러발생_테스트() {
+        assertThatThrownBy(() -> new Player(1100))
+                .isInstanceOf(IllegalArgumentException.class);
+//        Player player = new Player(new Lotto(Arrays.asList(1,4,3,2,5,6)));
+
     }
 }
