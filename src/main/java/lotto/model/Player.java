@@ -15,18 +15,18 @@ public class Player {
     /*
     테스트용 생성자
      */
-    public Player(Lotto lotto) {
-        this.playerLotto.add(lotto);
-        lotto.generateBonusNumber("7");
-    }
+//    public Player(Lotto lotto) {
+//        this.playerLotto.add(lotto);
+//        lotto.generateBonusNumber("7");
+//    }
 
     private void getLotto(int money) {
         int count = 0;
         while (count < money/1000) {
             LottoNumberGenerator lottoNumberGenerator = new LottoNumberGenerator();
             List<Integer> randomNumber = lottoNumberGenerator.generateLottoNumbers();
-            Lotto lotto = new Lotto(randomNumber);
             validateMoney(money);
+            Lotto lotto = new Lotto(randomNumber);
             lotto.generateBonusNumber();
             this.playerLotto.add(lotto);
             count++;
@@ -43,8 +43,7 @@ public class Player {
 
     private void showLottoNumbers(int idx) {
         String lottoNumbers = this.playerLotto.get(idx).getLottoNumbers();
-        String convertedNumbers = lottoNumbers.replace(",", ", ");
-        System.out.println(convertedNumbers);
+        System.out.println(lottoNumbers);
     }
 
     public void showBonusNumber(int idx) {

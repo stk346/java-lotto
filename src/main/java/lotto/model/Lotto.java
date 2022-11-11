@@ -2,9 +2,7 @@ package lotto.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -19,7 +17,6 @@ public class Lotto {
     public void getSorted() {
         Collections.sort(this.numbers);
     }
-
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
@@ -67,8 +64,12 @@ public class Lotto {
     }
 
     public String getLottoNumbers() {
-        Collections.sort(this.numbers);
-        return this.numbers.toString();
+        List<Integer> copiedNumbers = new ArrayList<>();
+        for (Integer i : numbers) {
+            copiedNumbers.add(i);
+        }
+        Collections.sort(copiedNumbers);
+        return copiedNumbers.toString();
     }
 
     public int getBonusNumber() {

@@ -5,6 +5,8 @@ import lotto.model.LottoRewardCalculator;
 import lotto.model.Player;
 import lotto.model.WinningNumbers;
 
+import java.util.NoSuchElementException;
+
 public class LottoController {
 
     public void buyLottoAndShowResult() {
@@ -20,10 +22,10 @@ public class LottoController {
     }
 
     private Player buyLottoAndReturnPlayer() {
-        System.out.println("구입금액을 입력해 주세요.");
+//        System.out.println("구입금액을 입력해 주세요.");
         String stringMoney = Console.readLine();
-        System.out.println();
         validateInputMoney(stringMoney);
+        System.out.println();
         int money = Integer.parseInt(stringMoney);
         Player player = new Player(money);
         System.out.println(money / 1000 + "개를 구매했습니다.");
@@ -37,7 +39,8 @@ public class LottoController {
     private void validateInputMoney(String money) {
         for (int i=0; i<money.length(); i++) {
             if (!Character.isDigit(money.charAt(i))) {
-                throw new IllegalArgumentException("올바른 숫자 형식을 입력해주세요.");
+                System.out.println("[ERROR] 올바른 숫자 형식을 입력해주세요.");
+                throw new NoSuchElementException("[ERROR] 올바른 숫자 형식을 입력해주세요.");
             }
         }
     }
@@ -59,7 +62,7 @@ public class LottoController {
 
     private void validateBonusNumber(String bonusNumber) {
         if (!Character.isDigit(bonusNumber.charAt(0))) {
-            throw new IllegalArgumentException("보너스 넘버는 숮자만 가능합니다.");
+            throw new IllegalArgumentException("[ERROR] 보너스 넘버는 숮자만 가능합니다.");
         }
     }
 
@@ -73,12 +76,12 @@ public class LottoController {
 
     private void validateInputWinningNumbers(String winningNumbers) {
         if (!winningNumbers.contains(",")) {
-            throw new IllegalArgumentException("로또 넘버는 콤마(,)로 구분돼야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 로또 넘버는 콤마(,)로 구분돼야 합니다.");
         }
         String[] InputOfSeparatedInComma = winningNumbers.split(",");
         for (String s : InputOfSeparatedInComma) {
             if (!Character.isDigit(s.charAt(0))) {
-                throw new IllegalArgumentException("로또 넘버는 숫자만 들어올 수 있습니다.");
+                throw new IllegalArgumentException("[ERROR] 로또 넘버는 숫자만 들어올 수 있습니다.");
             }
         }
     }

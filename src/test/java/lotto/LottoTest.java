@@ -1,7 +1,9 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.test.NsTest;
 import lotto.controller.LottoController;
 import lotto.model.*;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -9,10 +11,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-class LottoTest {
+class LottoTest extends NsTest {
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
     @Test
     void createLottoByOverSize() {
@@ -64,7 +67,7 @@ class LottoTest {
 
     @Test
     void 투입_금액_만큼_로또가_구매되는지_테스트() {
-        Player player = new Player(6300);
+        Player player = new Player(6000);
         assertThat(player.playerLotto.size()).isEqualTo(6);
     }
 
@@ -79,4 +82,19 @@ class LottoTest {
         LottoController lottoController = new LottoController();
         lottoController.buyLottoAndShowResult();
     }
+
+
+    private static final String ERROR_MESSAGE = "[ERROR]";
+    @Test
+    void 예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("100j");
+            System.out.println("아웃풋 : " + output());
+        });
+    }
+    @Override
+    public void runMain() {
+        Application.main(new String[]{});
+    }
+
 }
