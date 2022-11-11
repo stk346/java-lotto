@@ -71,7 +71,5 @@ class LottoTest {
     void 천원으로_나누어_떨어지지_않을_때_에러발생_테스트() {
         assertThatThrownBy(() -> new Player(1100))
                 .isInstanceOf(IllegalArgumentException.class);
-//        Player player = new Player(new Lotto(Arrays.asList(1,4,3,2,5,6)));
-
     }
 }
