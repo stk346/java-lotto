@@ -1,13 +1,18 @@
 package lotto.model;
 
+import lotto.validation.InputValidator;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Player {
-    public List<Lotto> playerLotto = new ArrayList<>();
-    private int money;
 
+    InputValidator inputValidator = new InputValidator();
+
+    private int money;
     private final int LOTTO_PRICE = 1000;
+
+    public List<Lotto> playerLotto = new ArrayList<>();
 
     public Player(int money) {
         this.money = money;
@@ -27,7 +32,7 @@ public class Player {
         while (count < money/LOTTO_PRICE) {
             LottoNumberGenerator lottoNumberGenerator = new LottoNumberGenerator();
             List<Integer> randomNumber = lottoNumberGenerator.generateLottoNumbers();
-            validateMoney(money);
+            inputValidator.validateMoney(money);
             Lotto lotto = new Lotto(randomNumber);
             lotto.generateBonusNumber();
             this.playerLotto.add(lotto);
@@ -52,9 +57,7 @@ public class Player {
         System.out.println(this.playerLotto.get(idx).getBonusNumber());
     }
 
-    private void validateMoney(int money) {
-        if (money%1000 != 0) throw new IllegalArgumentException("[ERROR] 투입 금액은 1000원으로 나누어 떨어져야 합니다.");
-    }
+
 
     public int getMoney() {
         return money;
