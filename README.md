@@ -299,5 +299,5 @@ public class Lotto {
   - [ ] 당첨 번호는 1 - 45 사이의 숫자여야 함.
   - [ ] 구입금액이 숫자가 아닐 때 에러 발생.
 
-* refactor
+* refactor (추가 구현사항)
   - [ ] 보너스 번호에서 그냥 엔터치면 StringIndexOutOfBoundsException 발생
