@@ -7,6 +7,8 @@ public class Player {
     public List<Lotto> playerLotto = new ArrayList<>();
     private int money;
 
+    private final int LOTTO_PRICE = 1000;
+
     public Player(int money) {
         this.money = money;
         getLotto(money);
@@ -15,14 +17,14 @@ public class Player {
     /*
     테스트용 생성자
      */
-    public Player(Lotto lotto) {
-        this.playerLotto.add(lotto);
-        lotto.generateBonusNumber("7");
-    }
+//    public Player(Lotto lotto) {
+//        this.playerLotto.add(lotto);
+//        lotto.generateBonusNumber("7");
+//    }
 
     private void getLotto(int money) {
         int count = 0;
-        while (count < money/1000) {
+        while (count < money/LOTTO_PRICE) {
             LottoNumberGenerator lottoNumberGenerator = new LottoNumberGenerator();
             List<Integer> randomNumber = lottoNumberGenerator.generateLottoNumbers();
             validateMoney(money);

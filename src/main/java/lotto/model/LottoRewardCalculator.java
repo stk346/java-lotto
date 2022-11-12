@@ -1,5 +1,7 @@
 package lotto.model;
 
+import lotto.view.OutputView;
+
 public class LottoRewardCalculator {
 
     int firstPlace = 0;
@@ -26,14 +28,33 @@ public class LottoRewardCalculator {
             if (matchedReward == RewardMapper.FOURTH_PLACE) fourthPlace++;
             if (matchedReward == RewardMapper.FIFTH_PLACE) fifthPlace++;
         }
-        RewardMapper.showResult(firstPlace, secondPlace, thirdPlace, fourthPlace, fifthPlace);
+        showResult();
     }
 
     public void showTotalReturn(Player player) {
-        double totalRevenue = RewardMapper.getRevenue(firstPlace, secondPlace, thirdPlace, fourthPlace, fifthPlace);
+        double totalRevenue = getRevenue();
         double investment = player.getMoney();
         double totalReturnRatio = (totalRevenue / investment)*100;
         double roundedTotalRevenueRatio = Math.round(totalReturnRatio*10)/10;
-        System.out.println("총 수익률은 " + roundedTotalRevenueRatio + "%입니다.");
+        OutputView.showReturnRatioMessage(roundedTotalRevenueRatio);
+//        System.out.println("총 수익률은 " + roundedTotalRevenueRatio + "%입니다.");
+    }
+
+    public void showResult() {
+        OutputView.showLottoResultMessage(RewardMapper.FIFTH_PLACE, fifthPlace);
+        OutputView.showLottoResultMessage(RewardMapper.FOURTH_PLACE, fourthPlace);
+        OutputView.showLottoResultMessage(RewardMapper.THIRD_PLACE, thirdPlace);
+        OutputView.showLottoResultMessage(RewardMapper.SECOND_PLACE, secondPlace);
+        OutputView.showLottoResultMessage(RewardMapper.FIRST_PLACE, firstPlace);
+    }
+
+    private int getRevenue() {
+        RewardMapper.values();
+        int fifthRevenue = RewardMapper.FIFTH_PLACE.reward * fifthPlace;
+        int fourthRevenue = RewardMapper.FOURTH_PLACE.reward * fourthPlace;
+        int thirdRevenue = RewardMapper.THIRD_PLACE.reward * thirdPlace;
+        int secondRevenue = RewardMapper.SECOND_PLACE.reward * secondPlace;
+        int firstRevenue = RewardMapper.FIRST_PLACE.reward * firstPlace;
+        return  fifthRevenue + fourthRevenue + thirdRevenue + secondRevenue + firstRevenue;
     }
 }

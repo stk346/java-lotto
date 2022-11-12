@@ -4,10 +4,15 @@ import camp.nextstep.edu.missionutils.Console;
 import lotto.model.LottoRewardCalculator;
 import lotto.model.Player;
 import lotto.model.WinningNumbers;
+import lotto.view.InputView;
+import lotto.view.OutputView;
 
 import java.util.NoSuchElementException;
 
 public class LottoController {
+
+    InputView inputView = new InputView();
+    OutputView outputView = new OutputView();
 
     public void buyLottoAndShowResult() {
         Player player = buyLottoAndReturnPlayer();
@@ -15,14 +20,13 @@ public class LottoController {
         WinningNumbers winningNumbers = getWinningNumbers();
         LottoRewardCalculator lottoRewardCalculator = new LottoRewardCalculator(winningNumbers);
 
-        System.out.println("당첨 통계");
-        System.out.println("---");
+        outputView.showWinningStatisticsMessage();
         lottoRewardCalculator.showRewardStatistics(player);
         lottoRewardCalculator.showTotalReturn(player);
     }
 
     private Player buyLottoAndReturnPlayer() {
-//        System.out.println("구입금액을 입력해 주세요.");
+        inputView.showBuyingAmountMessage();
         String stringMoney = Console.readLine();
         validateInputMoney(stringMoney);
         System.out.println();
@@ -53,7 +57,7 @@ public class LottoController {
     }
 
     private String getAndValidateBonusNumber() {
-        System.out.println("보너스 번호를 입력해 주세요;.");
+        inputView.showEnterBonusNumberMessage();
         String inputBonusNumber = Console.readLine();
         System.out.println();
         validateBonusNumber(inputBonusNumber);
@@ -67,7 +71,7 @@ public class LottoController {
     }
 
     private String getAndValidateWinningNumbers() {
-        System.out.println("당첨 번호를 입력해 주세요.");
+        inputView.showEnterWinningNumberMessage();
         String inputWinningNumbers = Console.readLine();
         System.out.println();
         validateInputWinningNumbers(inputWinningNumbers);
@@ -87,8 +91,8 @@ public class LottoController {
     }
 
     private int getMoneyInput() {
-        System.out.println("구입금액을 입력해 주세요.");
+        inputView.showEnterBudgetToBuyLottoMessage();
         System.out.println();
-        return  Integer.parseInt(Console.readLine());
+        return Integer.parseInt(Console.readLine());
     }
 }
