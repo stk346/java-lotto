@@ -19,11 +19,12 @@ public class LottoRewardCalculator {
 
         for (int idx=0; idx<lottoSize; idx++) {
             Lotto lotto = player.playerLotto.get(idx);
-            if (lottoNumberMatcher.getLottoMapper(lotto) == RewardMapper.FIRST_PLACE) firstPlace++;
-            if (lottoNumberMatcher.getLottoMapper(lotto) == RewardMapper.SECOND_PLACE) secondPlace++;
-            if (lottoNumberMatcher.getLottoMapper(lotto) == RewardMapper.THIRD_PLACE) thirdPlace++;
-            if (lottoNumberMatcher.getLottoMapper(lotto) == RewardMapper.FOURTH_PLACE) fourthPlace++;
-            if (lottoNumberMatcher.getLottoMapper(lotto) == RewardMapper.FIFTH_PLACE) fifthPlace++;
+            RewardMapper matchedReward = lottoNumberMatcher.getLottoMapper(lotto);
+            if (matchedReward == RewardMapper.FIRST_PLACE) firstPlace++;
+            if (matchedReward == RewardMapper.SECOND_PLACE) secondPlace++;
+            if (matchedReward == RewardMapper.THIRD_PLACE) thirdPlace++;
+            if (matchedReward == RewardMapper.FOURTH_PLACE) fourthPlace++;
+            if (matchedReward == RewardMapper.FIFTH_PLACE) fifthPlace++;
         }
         RewardMapper.showResult(firstPlace, secondPlace, thirdPlace, fourthPlace, fifthPlace);
     }

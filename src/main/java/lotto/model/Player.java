@@ -15,10 +15,10 @@ public class Player {
     /*
     테스트용 생성자
      */
-//    public Player(Lotto lotto) {
-//        this.playerLotto.add(lotto);
-//        lotto.generateBonusNumber("7");
-//    }
+    public Player(Lotto lotto) {
+        this.playerLotto.add(lotto);
+        lotto.generateBonusNumber("7");
+    }
 
     private void getLotto(int money) {
         int count = 0;

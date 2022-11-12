@@ -8,9 +8,9 @@ public enum RewardMapper {
     FIFTH_PLACE(3, false, 5000),
     NO_PLACE(0, false, 0);
 
-    public int matchingNumber;
-    public boolean isBonusNumberMatches;
-    public int reward;
+    public final int matchingNumber;
+    public final boolean isBonusNumberMatches;
+    public final int reward;
 
     RewardMapper(int matchingNumber, boolean isBonusNumberMatches, int reward) {
         this.matchingNumber = matchingNumber;

@@ -64,10 +64,7 @@ public class Lotto {
     }
 
     public String getLottoNumbers() {
-        List<Integer> copiedNumbers = new ArrayList<>();
-        for (Integer i : numbers) {
-            copiedNumbers.add(i);
-        }
+        List<Integer> copiedNumbers = new ArrayList<>(numbers);
         Collections.sort(copiedNumbers);
         return copiedNumbers.toString();
     }
