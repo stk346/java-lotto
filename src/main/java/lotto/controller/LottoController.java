@@ -11,6 +11,8 @@ import java.util.NoSuchElementException;
 
 public class LottoController {
 
+    private final String SPLIT_DELIMITER = ",";
+
     InputView inputView = new InputView();
     OutputView outputView = new OutputView();
 
@@ -32,7 +34,8 @@ public class LottoController {
         System.out.println();
         int money = Integer.parseInt(stringMoney);
         Player player = new Player(money);
-        System.out.println(money / 1000 + "개를 구매했습니다.");
+        System.out.print(money / 1000);
+        outputView.showPlayerBuyLottoMessage();
         return player;
     }
 
@@ -79,20 +82,14 @@ public class LottoController {
     }
 
     private void validateInputWinningNumbers(String winningNumbers) {
-        if (!winningNumbers.contains(",")) {
+        if (!winningNumbers.contains(SPLIT_DELIMITER)) {
             throw new IllegalArgumentException("[ERROR] 로또 넘버는 콤마(,)로 구분돼야 합니다.");
         }
-        String[] InputOfSeparatedInComma = winningNumbers.split(",");
+        String[] InputOfSeparatedInComma = winningNumbers.split(SPLIT_DELIMITER);
         for (String s : InputOfSeparatedInComma) {
             if (!Character.isDigit(s.charAt(0))) {
                 throw new IllegalArgumentException("[ERROR] 로또 넘버는 숫자만 들어올 수 있습니다.");
             }
         }
-    }
-
-    private int getMoneyInput() {
-        inputView.showEnterBudgetToBuyLottoMessage();
-        System.out.println();
-        return Integer.parseInt(Console.readLine());
     }
 }

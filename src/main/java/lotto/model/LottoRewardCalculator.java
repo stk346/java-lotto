@@ -36,16 +36,15 @@ public class LottoRewardCalculator {
         double investment = player.getMoney();
         double totalReturnRatio = (totalRevenue / investment)*100;
         double roundedTotalRevenueRatio = Math.round(totalReturnRatio*10)/10;
-        OutputView.showReturnRatioMessage(roundedTotalRevenueRatio);
-//        System.out.println("총 수익률은 " + roundedTotalRevenueRatio + "%입니다.");
+        System.out.println("총 수익률은 " + roundedTotalRevenueRatio + "%입니다.");
     }
 
     public void showResult() {
-        OutputView.showLottoResultMessage(RewardMapper.FIFTH_PLACE, fifthPlace);
-        OutputView.showLottoResultMessage(RewardMapper.FOURTH_PLACE, fourthPlace);
-        OutputView.showLottoResultMessage(RewardMapper.THIRD_PLACE, thirdPlace);
-        OutputView.showLottoResultMessage(RewardMapper.SECOND_PLACE, secondPlace);
-        OutputView.showLottoResultMessage(RewardMapper.FIRST_PLACE, firstPlace);
+        RewardMapper.showLottoResultMessage(RewardMapper.FIFTH_PLACE, fifthPlace);
+        RewardMapper.showLottoResultMessage(RewardMapper.FOURTH_PLACE, fourthPlace);
+        RewardMapper.showLottoResultMessage(RewardMapper.THIRD_PLACE, thirdPlace);
+        RewardMapper.showLottoResultMessage(RewardMapper.SECOND_PLACE, secondPlace);
+        RewardMapper.showLottoResultMessage(RewardMapper.FIRST_PLACE, firstPlace);
     }
 
     private int getRevenue() {

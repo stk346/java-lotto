@@ -10,8 +10,12 @@ public enum RewardMapper {
     FIFTH_PLACE(3, false, 5000),
     NO_PLACE(0, false, 0);
 
-    public final int matchingNumber;
-    public final boolean isBonusNumberMatches;
+    private static final String NUMBER_MATCHES_MESSAGE = "%s개 일치 ";
+    private static final String WINNING_REVENUE_MESSAGE = "(%,d원)";
+    private static final String MATCHES_COUNT_MESSAGE = " - %s개";
+
+    private final int matchingNumber;
+    private final boolean isBonusNumberMatches;
     public final int reward;
 
     RewardMapper(int matchingNumber, boolean isBonusNumberMatches, int reward) {
@@ -30,4 +34,10 @@ public enum RewardMapper {
         return NO_PLACE;
     }
 
+    public static void showLottoResultMessage(RewardMapper rewardMapper, int matchesCount) {
+        System.out.println(
+                String.format(NUMBER_MATCHES_MESSAGE , rewardMapper.matchingNumber)
+                        + String.format(WINNING_REVENUE_MESSAGE, rewardMapper.reward)
+                        + String.format(MATCHES_COUNT_MESSAGE, matchesCount));
+    }
 }

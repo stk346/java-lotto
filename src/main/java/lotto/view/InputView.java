@@ -10,6 +10,7 @@ public class InputView {
     private static final int LottoPrice = 1000;
 
 
+
     public void showBuyingAmountMessage() {
         System.out.println(BUYING_AMOUNT_MESSAGE);
     }

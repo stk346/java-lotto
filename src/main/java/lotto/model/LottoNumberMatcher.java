@@ -3,6 +3,8 @@ package lotto.model;
 public class LottoNumberMatcher {
     WinningNumbers winningNumbers;
 
+    private final int SECOND_OR_THIRD_PlACE_MATCHING_NUMBER = 5;
+
     public LottoNumberMatcher(WinningNumbers winningNumbers) {
         this.winningNumbers = winningNumbers;
     }
@@ -10,7 +12,7 @@ public class LottoNumberMatcher {
     public RewardMapper getLottoMapper(Lotto lotto) {
         int matchingNumber = getMatchingNumber(lotto);
         boolean isBonusNumberMatches = isBonusNumberMatches(lotto);
-        if (matchingNumber != 5) {
+        if (matchingNumber != SECOND_OR_THIRD_PlACE_MATCHING_NUMBER) {
             isBonusNumberMatches = false;
         }
 
