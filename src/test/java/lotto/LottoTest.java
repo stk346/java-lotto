@@ -27,6 +27,5 @@ class LottoTest {
     @Test
     void test() {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 5));
-        lotto.numbers.add(0);
     }
 }
